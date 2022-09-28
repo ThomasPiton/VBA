@@ -1,0 +1,49 @@
+'Method 1: ThisWorkbook
+Sub Set_Workbook1()
+    Dim wb As Workbook
+    Set wb = Application.ThisWorkbook
+End Sub
+
+
+'Method 2: ActiveWorkbook
+Sub Set_Workbook2()
+    Dim wb As Workbook
+    Set wb = Application.ActiveWorkbook
+End Sub
+
+
+'Method 3: Workbooks.Item(1)
+Sub Set_Workbook3()
+    Dim wb As Workbook
+    Set wb = Application.Workbooks.Item(1)
+End Sub
+
+
+'Method 4: Workbooks("")
+Sub Set_Workbook4()
+    Dim wb As Workbook
+    Set wb = Application.Workbooks("book1")
+End Sub
+
+
+'Method 5: Workbooks("")
+Sub Set_Workbook5()
+    Dim wb As Workbook
+    Set wb = Application.Workbooks("book1.xlsm")
+End Sub
+
+
+'Method 6: Workbooks.Open("")
+Sub Set_Workbook6()
+    Dim wb As Workbook
+    Set wb = Application.Workbooks.Open("C:/.../book1.xlsm")
+End Sub
+
+
+'Method 7: Workbooks.Open(path)
+Sub Set_Workbook7()
+    Dim wb As Workbook
+    Dim path As String
+    Let path = "C:/.../book1.xlsm"
+    Set wb = Application.Workbooks.Open(path)
+End Sub
