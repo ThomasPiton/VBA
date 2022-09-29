@@ -1,0 +1,19 @@
+'Method 1: Add a new workbook
+'Description: use "Set" to add a new workbook
+
+Sub Add_Workbook1()
+    Dim wb As Workbook
+    Set wb = Workbooks.Add()
+End Sub
+
+
+'Method 2: Add a new workbook based on a template
+'Description: you may have to use a specific template each time you create a new workbook
+'therefore you can automize the processus using the method below.
+
+Sub Add_Workbook2()
+    Dim wb As Workbook
+    Dim template_path As String
+    Let template_path = "C:\...\template.xlsx"
+    Set wb = Application.Workbooks.Add(template_path)
+End Sub
