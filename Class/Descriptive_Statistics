@@ -1,0 +1,144 @@
+'''
+
+'Class Module : Class_Descriptive_Statistics
+'Author: Thomas Piton
+'Date: 03/10/2022
+'Objective: Provide a list of descriptive statistic functions that can be used on a single array.
+
+'''
+
+Public Function F_Mean(arr As Variant) As Double
+    
+    'Condition to avoid empty array
+    If VBA.IsEmpty(arr) Then Err.Raise 1, , "The array is empty"
+    
+    'Compute the mean
+    F_Mean = F_Sum(arr) / F_Count(arr)
+
+End Function
+
+'''
+
+Public Function F_StdError(arr As Variant) As Double
+        
+    'the standard error formula is teh standard deviation divided by
+    'the square of the number of observation in the sample
+    F_StdError = F_StdDev(arr) / VBA.Sqr(F_Count(arr))
+        
+End Function
+
+'''
+
+Public Function F_StdDev(arr As Variant) As Double
+
+    'Condition to avoid empty array
+    If VBA.IsEmpty(arr) Then Err.Raise 1, , "The array is empty"
+    
+    'Compute Variance and quare the variance to find the standard deviation
+    F_StdDev = Sqr(F_Variance(arr))
+    
+End Function
+
+'''
+
+Public Function F_Variance(arr As Variant) As Double
+
+    'Condition to avoid empty array
+    If VBA.IsEmpty(arr) Then Err.Raise 1, , "The array is empty"
+    
+    'Compute the Mean of the array
+    X_Bar = F_Mean(arr)
+    
+    'Initialize
+    F_Variance = 0
+    
+    For x = LBound(arr) To UBound(arr)
+        'Test before to add the item if its numeric value
+        If VBA.IsNumeric(arr(x)) = False Then Err.Raise 2, , "The item number " & x & " is not a numeric value."
+        'Condition to find the maximum value
+        F_Variance = F_Variance + ((arr(x) - X_Bar) ^ 2)
+    Next x
+    
+    'Then devide by the number of observation
+    F_Variance = F_Variance / F_Count(arr)
+
+End Function
+
+'''
+
+Public Function F_Range(arr As Variant) As Double
+    
+    'the range of a sample is the maximum value minus the minimum value
+    F_Range = F_Max(arr) - F_Min(arr)
+
+End Function
+
+'''
+
+Public Function F_Min(arr As Variant) As Double
+
+    'Condition to avoid empty array
+    If VBA.IsEmpty(arr) Then Err.Raise 1, , "The array is empty"
+    
+    'Initialise the first maximum value
+    F_Min = arr(0)
+    
+    For x = LBound(arr) + 1 To UBound(arr)
+        'Test before to add the item if its numeric value
+        If VBA.IsNumeric(arr(x)) = False Then Err.Raise 2, , "The item number " & x & " is not a numeric value."
+        'Condition to find the maximum value
+        If arr(x) < F_Min Then F_Min = arr(x)
+    Next x
+
+End Function
+
+'''
+
+Public Function F_Max(arr As Variant) As Double
+    
+    'Condition to avoid empty array
+    If VBA.IsEmpty(arr) Then Err.Raise 1, , "The array is empty"
+    
+    'Initialise the first maximum value
+    F_Max = arr(0)
+    
+    For x = LBound(arr) + 1 To UBound(arr)
+        'Test before to add the item if its numeric value
+        If VBA.IsNumeric(arr(x)) = False Then Err.Raise 2, , "The item number " & x & " is not a numeric value."
+        'Condition to find the maximum value
+        If arr(x) > F_Max Then F_Max = arr(x)
+    Next x
+
+End Function
+
+'''
+
+Public Function F_Sum(arr As Variant) As Double
+
+    'Condition to avoid empty array
+    If VBA.IsEmpty(arr) Then Err.Raise 1, , "The array is empty"
+    
+    'Initialise the sum to zero
+    F_Sum = 0
+    
+    For x = LBound(arr) To UBound(arr)
+        'Test before to add the item if its numeric value
+        If VBA.IsNumeric(arr(x)) = False Then Err.Raise 1, , "The item number " & x & " is not a numeric value."
+        'Sum the value
+        F_Sum = F_Sum + arr(x)
+    Next x
+
+End Function
+
+'''
+
+Public Function F_Count(arr As Variant) As Double
+
+    'Condition to avoid empty array
+    If VBA.IsEmpty(arr) Then Err.Raise 1, , "The array is empty"
+    
+    'Upper limit of the array + 1 because lower bound starts from zero
+    F_Count = UBound(arr) + 1
+
+End Function
+
