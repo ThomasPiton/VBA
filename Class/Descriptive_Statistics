@@ -59,7 +59,7 @@ Public Function F_Variance(arr As Variant) As Double
         F_Variance = F_Variance + ((arr(x) - X_Bar) ^ 2)
     Next x
     
-    'Then devide by the number of observation
+    'Then devide by the number of observation 
     F_Variance = F_Variance / F_Count(arr)
 
 End Function
