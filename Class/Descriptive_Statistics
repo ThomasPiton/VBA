@@ -5,7 +5,7 @@
 'Date: 03/10/2022
 'Objective: Provide a list of descriptive statistic functions that can be used on a single array.
 
-'''
+''' 
 
 Public Function F_Mean(arr As Variant) As Double
     
